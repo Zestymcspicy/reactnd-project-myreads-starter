@@ -23,7 +23,11 @@ class BooksApp extends React.Component {
         <Route path="/search" render={() => (
           <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+              <Link
+                to='/'
+                className="close-search"
+                >
+                </Link>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -42,24 +46,25 @@ class BooksApp extends React.Component {
             </div>
           </div>
         )}/>
+        <div className="list-books-title">
+          <h1>MyReads</h1>
+        </div>
+        <Route exact path='/' render={()=> (
           <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
             <div className="list-books-content">
-              <div>
-                <Shelf />
+              <Shelf />
+            </div>
+            </div>
+          )}/>
             <div className="open-search">
               <Link
                 to='search'
                 className='book-search'
                 >
                 </Link>
-            </div>
           </div>
-      </div>
-    </div>
-  </div>
+        </div>
+
     )}
 
   }
