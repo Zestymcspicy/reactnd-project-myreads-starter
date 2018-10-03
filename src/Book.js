@@ -4,13 +4,7 @@ import React, { Component } from 'react'
 class Book extends Component {
   constructor (props) {
     super(props);
-    this.state = {value : `${this.props.book.value}`}
 
-    this.shelfChange = this.shelfChange.bind(this);
-  }
-
-  shelfChange(event) {
-    this.setState({shelf: event.target.value})
   }
 
   render () {
