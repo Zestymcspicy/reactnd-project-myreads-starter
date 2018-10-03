@@ -30,7 +30,25 @@ class BooksApp extends React.Component {
     });
   }
 
+  updateQuery = (query) => {
+    this.setState({query: query.trim()})
+  }
+
+  bookSearch() {
+    if(query !== '') {
+      BooksAPI.search(this.state.query)
+      .then(resp=> {
+        resp.map(b=> {
+          let find = this.state.books.filter(book => book.id === b.id);
+        }
+      })
+      return this.setState({results : response})
+      })
+    }
+  }
+
   render() {
+    const { query } = this.state
     return (
       <div className="app">
         <Route path="/search" render={() => (
@@ -50,12 +68,19 @@ class BooksApp extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
+                <input
+                  type="text"
+                  placeholder="Search by title or author"
+                  value={query}
+                  onChange={(event) => this.updateQuery(event.target.value)}
+                />
 
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+                {this.state.results.map((book, key)=> <Book updateBook={this.props.updateBook} book={book} key={key} />)}
+              </ol>
             </div>
           </div>
         )}/>
