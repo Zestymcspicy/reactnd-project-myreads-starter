@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 class Book extends Component {
   constructor (props) {
     super(props);
-    this.state = {shelf : `${this.props.book.shelf}`}
+    this.state = {value : `${this.props.book.value}`}
 
     this.shelfChange = this.shelfChange.bind(this);
   }
@@ -20,7 +20,7 @@ class Book extends Component {
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url('${this.props.book.imageLinks.thumbnail}')` }}></div>
           <div className="book-shelf-changer">
-            <select shelf={this.state.shelf} onChange={(event) => this.props.updateBook(this.props.book, event.target.value)}>
+            <select value={this.props.book.shelf || "none"} onChange={(event) => this.props.updateBook(this.props.book, event.target.value)}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>

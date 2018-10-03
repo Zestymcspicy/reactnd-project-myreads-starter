@@ -6,16 +6,17 @@ import Shelf from './BookShelves.js'
 
 
 class BooksApp extends React.Component {
-  state = {
-    search : '',
-    books : []
-  }
+
+    state = {
+      search : '',
+      books : []
+    }
+
 
   componentDidMount() {
     BooksAPI.getAll()
     .then(resp => {
       this.setState({books: resp})
-      console.log(this.state.books)
     });
 }
 
@@ -65,8 +66,8 @@ class BooksApp extends React.Component {
             </div>
               <div className="list-books">
                 <div className="list-books-content">
-                  <Shelf updateBook={this.updateBook} name="Currently Reading" books={this.state.books.filter(b => b.shelf === "wantToRead")}/>
-                  <Shelf updateBook={this.updateBook} name="Want To Read" books={this.state.books.filter(b => b.shelf === "currentlyReading")}/>
+                  <Shelf updateBook={this.updateBook} name="Currently Reading" books={this.state.books.filter(b => b.shelf === "currentlyReading")}/>
+                  <Shelf updateBook={this.updateBook} name="Want To Read" books={this.state.books.filter(b => b.shelf === "wantToRead")}/>
                   <Shelf updateBook={this.updateBook} name="Read" books={this.state.books.filter(b => b.shelf === "read")}/>
                 </div>
               </div>

@@ -156,6 +156,7 @@ body, .app {
 }
 .book-shelf-changer select {
   width: 100%;
+  font-size: 30px;
   height: 100%;
   opacity: 0;
   cursor: pointer;
