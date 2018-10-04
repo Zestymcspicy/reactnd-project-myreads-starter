@@ -7,8 +7,16 @@ import * as BooksAPI from './BooksAPI'
 class SearchPage extends Component {
 
   state = {
+      books : [],
       results: [],
       query: ''
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll()
+    .then((books) => {
+      this.setState({ books })
+    })
   }
 
   bookSearch() {
@@ -29,7 +37,8 @@ class SearchPage extends Component {
     }
 
     updateQuery = (query) => {
-      this.setState({query: query.trim()})
+      this.setState({query: query.trim()});
+      this.bookSearch()
     }
 
   render() {
@@ -53,11 +62,9 @@ class SearchPage extends Component {
             */}
             <input
               type="text"
-
               value={query}
               onChange={(event) => this.updateQuery(event.target.value)}
             />
-
           </div>
         </div>
         <div className="search-books-results">

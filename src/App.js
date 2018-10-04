@@ -26,7 +26,7 @@ class BooksApp extends React.Component {
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }));
     });
-  } 
+  }
 
 
   render() {
@@ -34,7 +34,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route path="/search" render={() => (
-          <SearchPage />
+          <SearchPage updateBook={this.updateBook}/>
         )}/>
         <Route exact path='/' render={()=> (
           <div>
