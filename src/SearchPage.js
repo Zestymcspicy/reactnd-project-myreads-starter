@@ -20,10 +20,10 @@ class SearchPage extends Component {
   }
 
   bookSearch() {
-        if(this.state.query === "" || this.state.query === undefined) {
-            return this.setState({ results: [] });
-        }
-        BooksAPI.search(this.state.query.trim()).then(response => {
+    if(this.state.query === "" || this.state.query === undefined) {
+      return this.setState({ results: [] });
+    }
+        BooksAPI.search(this.state.query).then(response => {
             if(response.error) {
                 return this.setState({ results: [] });
             } else {
@@ -37,9 +37,10 @@ class SearchPage extends Component {
     }
 
     updateQuery = (query) => {
-      this.setState({query: query.trim()});
       this.bookSearch()
+      this.setState({query: query})
     }
+
 
   render() {
     const { query } = this.state
