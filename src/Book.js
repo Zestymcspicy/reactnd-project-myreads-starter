@@ -1,9 +1,10 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 
 function Book(props)  {
-    if (props.book.imageLinks.thumbnail === undefined) {
-    props.book.imageLinks = 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.browshot.com%2Fstatic%2Fimages%2Fnot-found.png&imgrefurl=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F42135268%2Fangular2-onerror-image-binding&docid=NxZeD1d7TApzaM&tbnid=QmsBtkId78nvCM%3A&vet=10ahUKEwi7vp-DmezdAhWK64MKHag2DoMQMwg1KAIwAg..i&w=400&h=400&bih=754&biw=1536&q=image%20not%20found&ved=0ahUKEwi7vp-DmezdAhWK64MKHag2DoMQMwg1KAIwAg&iact=mrc&uact=8'}
+    if (props.book.imageLinks === undefined) {
+    props.book.imageLinks = {thumbnail:'./icons/noImage.svg'}
+  }
     return (
       <li>
       <div className="book">
