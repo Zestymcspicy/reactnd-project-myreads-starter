@@ -1,16 +1,22 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Book from './Book.js'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
 
-class SearchPage extends Component {
-
-  state = {
+class SearchPage extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.updateQuery = this.updateQuery.bind(this);
+    this.bookSearch = this.bookSearch.bind(this);
+    this.state = {
       books : [],
       results: [],
       query: ''
+    }
   }
+
+
 
   componentDidMount() {
     BooksAPI.getAll()
@@ -19,9 +25,9 @@ class SearchPage extends Component {
     })
   }
 
-  bookSearch() {
+  async bookSearch() {
     if(this.state.query === "" || this.state.query === undefined) {
-      return this.setState({ results: [] });
+      return this.setState({ results: [] })
     }
         BooksAPI.search(this.state.query).then(response => {
             if(response.error) {
@@ -36,9 +42,11 @@ class SearchPage extends Component {
         });
     }
 
-    updateQuery = (query) => {
-      this.bookSearch()
-      this.setState({query: query})
+
+
+    updateQuery(event) {
+      this.setState({query: (event.target.value)}, () => {
+        this.state.query === '' ? this.setState({results: []}) : this.bookSearch()})
     }
 
 
@@ -64,7 +72,7 @@ class SearchPage extends Component {
             <input
               type="text"
               value={query}
-              onChange={(event) => this.updateQuery(event.target.value)}
+              onChange={this.updateQuery}
             />
           </div>
         </div>

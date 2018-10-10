@@ -3,7 +3,7 @@ import React from 'react'
 
 function Book(props)  {
     if (props.book.imageLinks === undefined) {
-    props.book.imageLinks = {thumbnail:'./icons/noImage.svg'}
+    props.book.imageLinks = {thumbnail:'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}
   }
     return (
       <li>
