@@ -2,7 +2,10 @@
 import React from 'react'
 
 function Book(props)  {
-    if (props.book.imageLinks === undefined) {
+
+  const authors = props.book.authors
+
+  if (props.book.imageLinks === undefined) {
     props.book.imageLinks = {thumbnail:'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}
   }
     return (
@@ -21,7 +24,7 @@ function Book(props)  {
           </div>
         </div>
         <div className="book-title">{props.book.title}</div>
-        <div className="book-authors">{props.book.author}</div>
+        <div className="book-authors">{authors.map((x, index) => (index===authors.length-1)? x : `${x}, `)}</div>
       </div>
     </li>
 
