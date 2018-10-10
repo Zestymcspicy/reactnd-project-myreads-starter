@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import Book from './Book.js'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-
+import { DebounceInput } from 'react-debounce-input'
 
 class SearchPage extends PureComponent {
   constructor(props) {
@@ -69,9 +69,10 @@ class SearchPage extends PureComponent {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input
+            <DebounceInput
               type="text"
               value={query}
+              debounceTimeout={1000}
               onChange={this.updateQuery}
             />
           </div>
